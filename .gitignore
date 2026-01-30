@@ -4,3 +4,13 @@ xml2csv.txt
 
 # Sample XML files
 sample_xml/
+
+# Virtual environment
+venv/
+.env
+
+# OS files
+.DS_Store
+.idea/
+.vscode/
+.MACOSX/
