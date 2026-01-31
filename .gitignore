@@ -10,7 +10,7 @@ sample_xml/
 .env
 
 # Python environment
-.__pycache__/
+__pycache__/
 
 # OS files
 .DS_Store
