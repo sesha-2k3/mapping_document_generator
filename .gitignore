@@ -6,8 +6,11 @@ xml2csv.txt
 sample_xml/
 
 # Virtual environment
-venv/
+.venv/
 .env
+
+# Python environment
+.__pycache__/
 
 # OS files
 .DS_Store
