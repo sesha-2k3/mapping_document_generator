@@ -734,6 +734,17 @@ def render_mapping_expanders(parsed_data: dict) -> None:
 
 def render_results(df: pd.DataFrame, report: str, exceptions: list[dict]) -> None:
     """Render the results section."""
+    
+    # Validate DataFrame has required columns
+    required_columns = ['Mapping Name', 'Rule Type', 'Status']
+    missing_columns = [col for col in required_columns if col not in df.columns]
+    
+    if missing_columns or df.empty:
+        st.warning("No mapping data generated. Please try generating again.")
+        if not df.empty:
+            st.dataframe(df)  # Show whatever we have for debugging
+        return
+    
     # Filters
     st.subheader("Mapping Document")
     col1, col2, col3 = st.columns(3)
@@ -804,6 +815,8 @@ def main():
     # Initialize session state
     if 'results' not in st.session_state:
         st.session_state.results = None
+    if 'last_filename' not in st.session_state:
+        st.session_state.last_filename = None
     
     st.title("Informatica Mapping Document Generator")
     st.markdown("Generate mapping documentation with **plain English transformation logic** from PowerCenter XML exports.")
@@ -822,7 +835,14 @@ def main():
     
     if not uploaded_file:
         st.info("Upload an Informatica PowerCenter XML file to get started.")
+        st.session_state.results = None  # Clear old results
+        st.session_state.last_filename = None
         return
+    
+    # Clear results if filename changed (new file uploaded)
+    if st.session_state.last_filename != uploaded_file.name:
+        st.session_state.results = None
+        st.session_state.last_filename = uploaded_file.name
     
     # Parse XML
     try:

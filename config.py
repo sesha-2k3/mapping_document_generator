@@ -51,6 +51,7 @@ RULE_TYPES = {
     'aggregated': 'Aggregated',
     'aggregated_group': 'Aggregated + Group By',
     'joined': 'Joined',
+    'joined_filter': 'Joined + Filter',
     'routed': 'Routed',
     'unioned': 'Unioned',
     'ranked': 'Ranked',
