@@ -158,19 +158,6 @@ MAX_TOKENS = 4096
 - If hitting limits, wait a moment and retry
 - Consider upgrading for heavy usage
 
-## API Usage
-
-The application makes one LLM call per target column to generate descriptions. For a mapping with 50 target columns, expect ~50 API calls.
-
-Groq's free tier typically allows:
-- 30 requests per minute
-- 14,400 requests per day
-
 ## License
 
 MIT License - Feel free to modify and use as needed.
-
-## Credits
-
-- **LLM**: Llama 3.3 70B via [Groq](https://groq.com/)
-- **UI**: [Streamlit](https://streamlit.io/)
